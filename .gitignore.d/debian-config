@@ -1,0 +1,8 @@
+*
+!.pbuilderrc
+!.sh
+!.sh/hook
+!.sh/hook/zshrc.post
+!.sh/hook/zshrc.post/debian
+!.gitignore.d
+!.gitignore.d/debian-config
