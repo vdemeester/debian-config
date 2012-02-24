@@ -8,5 +8,16 @@
 hash -d debian.s=$HOME/src/debian
 # }}}
 # {{{ PROFILES ---------------------------------------------------------------
+zstyle ":chpwd:profiles:$HOME/src/debian(|/|/*)" profile debian
+# Default debian
+chpwd_profile_debian() {
+    [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
+
+    info "Entering debian profile"
+    # Remove some environment variables possibly set
+    export GIT_AUTHOR_EMAIL="vincent+debian@demeester.fr"
+    export GIT_COMMITTER_EMAIL="vincent+debian@demeester.fr"
+    export DEBMAIL="vincent+debian@demeester.fr"
+}
 # }}}
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
