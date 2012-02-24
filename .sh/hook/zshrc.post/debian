@@ -1,0 +1,12 @@
+# Filename:         .sh/hook/zshrc.post/debian
+# Author:           Vincent Demeester
+# License:          This file is licensed under the GPL v2
+# --------------------------------------------------------------------------- #
+# This file contains debian related profiles and tunning, hashes, …
+# --------------------------------------------------------------------------- #
+# {{{ HASHES -----------------------------------------------------------------
+hash -d debian.s=$HOME/src/debian
+# }}}
+# {{{ PROFILES ---------------------------------------------------------------
+# }}}
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
