@@ -1,0 +1,44 @@
+# Filename:         .sh/hook/shrc.post/debian
+# Author:           Vincent Demeester
+# License:          This file is licensed under the GPL v2
+# --------------------------------------------------------------------------- #
+# This file contains debian related profiles and tuning for sh (bash, zsh, …).
+# Contains function, aliases (?), …
+# --------------------------------------------------------------------------- #
+# {{{ Functions --------------------------------------------------------------
+function update_pbuilder() {
+    nprocs=$(grep -cE "^processor" /proc/cpuinfo)
+    dists=$@
+    for i in $dists; do
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 sudo pbuilder update
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 sudo pbuilder update
+    done
+}
+function create_pbuilder() {
+    nprocs=$(grep -cE "^processor" /proc/cpuinfo)
+    dists=$@
+    for i in $dists; do
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 sudo pbuilder create
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 sudo pbuilder create
+    done
+}
+function clean_pbuilder() {
+    nprocs=$(grep -cE "^processor" /proc/cpuinfo)
+    dists=$@
+    for i in $dists; do
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 sudo pbuilder --clean
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 sudo pbuilder --clean
+    done
+}
+function build_pbuilder() {
+    nprocs=$(grep -cE "^processor" /proc/cpuinfo)
+    dsc=$1
+    shift
+    dists=$@
+    for i in $dists; do
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 sudo pbuilder build $dsc
+        CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 sudo pbuilder build $dsc
+    done
+}
+# }}}
+# vim:filetype=sh foldmethod=marker autoindent expandtab shiftwidth=4

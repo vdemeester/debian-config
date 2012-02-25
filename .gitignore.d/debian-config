@@ -2,6 +2,8 @@
 !.pbuilderrc
 !.sh
 !.sh/hook
+!.sh/hook/shrc.post
+!.sh/hook/shrc.post/debian
 !.sh/hook/zshrc.post
 !.sh/hook/zshrc.post/debian
 !.gitignore.d
