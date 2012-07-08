@@ -8,24 +8,21 @@
 # {{{ Functions --------------------------------------------------------------
 function update_pbuilder() {
     nprocs=$(grep -cE "^processor" /proc/cpuinfo)
-    dists=$@
-    for i in $dists; do
+    for i in $*; do
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 pbuilder update
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 pbuilder update
     done
 }
 function create_pbuilder() {
     nprocs=$(grep -cE "^processor" /proc/cpuinfo)
-    dists=$@
-    for i in $dists; do
+    for i in $*; do
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 pbuilder create
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 pbuilder create
     done
 }
 function clean_pbuilder() {
     nprocs=$(grep -cE "^processor" /proc/cpuinfo)
-    dists=$@
-    for i in $dists; do
+    for i in $*; do
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 pbuilder --clean
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 pbuilder --clean
     done
@@ -34,8 +31,7 @@ function build_pbuilder() {
     nprocs=$(grep -cE "^processor" /proc/cpuinfo)
     dsc=$1
     shift
-    dists=$@
-    for i in $dists; do
+    for i in $*; do
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=i386 pbuilder build $dsc
         sudo CONCURRENCY_LEVEL=$nprocs DIST=$i ARCH=amd64 pbuilder build $dsc
     done

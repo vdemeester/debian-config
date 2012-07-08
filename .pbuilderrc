@@ -20,6 +20,7 @@ info() {
 # They are both set to the system values
 : ${DIST:="$(lsb_release --short --codename)"}
 : ${ARCH:="$(dpkg --print-architecture)"}
+: ${LSB_RELEASE:="$(lsb_release --short --id)"}
 
 # Codenames for Debian suites according to their alias.
 # Update these when needed.
@@ -89,6 +90,12 @@ if in_array $DIST ${DEBIAN_SUITES[@]}; then
         DIST="sid"
         OTHERMIRROR="$OTHERMIRROR | deb http://ftp.de.debian.org/debian/ experimental $COMPONENTS"
     fi
+
+    if [ "${LSB_RELEASE}" == "Ubuntu" ]; then
+        echo "Debian on ubuntu"
+        DEBOOTSTRAPOPTS=("${DEBOOTSTRAPOPTS[@]}" "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg")
+    fi
+    echo "$DEBOOTSTRAPOPTS"
 elif in_array $DIST ${UBUNTU_SUITES[@]}; then
     # Ubuntu configuration.
     MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
