@@ -34,8 +34,8 @@ OLD_STABLE_BACKPORTS_SUITE="$OLD_STABLE_CODENAME-backports"
 DEBIAN_SUITES=($UNSTABLE_CODENAME $TESTING_CODENAME $STABLE_CODENAME $OLD_STABLE_CODENAME "unstable" "testing" "stable" "experimental")
 
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("precise" "oneiric" "natty" "maverick" "lucid" "karmic" "jaunty" "intrepid" "hardy" "gutsy")
-OLD_UBUNTU_SUITES=("karmic" "jaunty" "intrepid" "hardy" "gutsy")
+UBUNTU_SUITES=("quantal" "precise" "oneiric" "natty" "maverick" "lucid" "karmic" "jaunty" "intrepid" "hardy" "gutsy")
+OLD_UBUNTU_SUITES=("maverick" "lucid" "karmic" "jaunty" "intrepid" "hardy" "gutsy")
 
 # Mirrors to use. Update these to your preferred mirror.
 DEBIAN_MIRROR="ftp.fr.debian.org"
